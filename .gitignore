@@ -13,3 +13,10 @@ EscapeRoom/Content/StarterContent/
 #################################
 
 *.VC.db
+
+#########################
+# Xcode generated files #
+#########################
+
+**/xcuserdata
+contents.xcworkspacedata

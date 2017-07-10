@@ -12,7 +12,8 @@ EscapeRoom/Content/StarterContent/
 # Visual Studio generated files #
 #################################
 
-*.VC.db
+*.VC.db*
+**.vs
 
 #########################
 # Xcode generated files #

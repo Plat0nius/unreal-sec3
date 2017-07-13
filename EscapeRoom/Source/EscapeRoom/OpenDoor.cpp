@@ -1,6 +1,7 @@
 // Copyright Riho Hiiepuu 2017
 
 #include "OpenDoor.h"
+#include "Engine/World.h"
 #include "Gameframework/Actor.h"
 
 
@@ -20,12 +21,17 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 
+	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
+	
+}
+
+void UOpenDoor::OpenDoor()
+{
 	AActor* Owner = GetOwner();
 
 	FRotator NewRotation = FRotator(0.0f, 70.0f, 0.0f);
 
 	Owner->SetActorRotation(NewRotation);
-	
 }
 
 
@@ -34,6 +40,12 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	// Poll trigger volume
+	if (PressurePlate->IsOverlappingActor(ActorThatOpens))
+	{
+		// if ActorThatOpens is in the volume, open door
+		OpenDoor();
+	}
+	
 }
 
